@@ -1,35 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %}
-        <title>Padrão</title>
-    {% endblock %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
-</head>
-<body>
-    {% block menu %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-        <a class="navbar-brand" href="#">Todolist</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <div class="d-flex ml-auto">
-            </div>
-          </div>
-        </div>
-      </nav>
-    {% endblock %}
+{% extends "base.html" %}
 
-    {% block content %}
-    {% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>    
-</body>
-</html>
+{% block title %}
+    Agenda - Início
+{% endblock %}
+
+{% block content %}
+    <div class="container conteudo-principal">
+        <div class="secao-boas-vindas">
+            <h1 class="titulo-boas-vindas">
+                <i class="bi bi-journal-text"></i> Bem-vindo à sua Agenda
+            </h1>
+            <p class="texto-recurso">Gerencie seus contatos e mensagens de forma simples e organizada</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card-recurso text-center h-100 card-flex">
+                    <div class="card-flex-content">
+                        <div>
+                            <i class="bi bi-person-plus-fill icone-recurso mb-3"></i>
+                            <h3 class="titulo-recurso">Contatos</h3>
+                            <p class="texto-recurso">Gerencie seus contatos</p>
+                        </div>
+                        <div class="mt-auto">
+                            <a href="{{ url_for('listar_contatos') }}" class="btn mt-3 btn-contatos">
+                                <i class="bi bi-people-fill"></i> Ver Contatos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card-recurso text-center h-100 card-flex">
+                    <div class="card-flex-content">
+                        <div>
+                            <i class="bi bi-chat-dots-fill icone-recurso mb-3"></i>
+                            <h3 class="titulo-recurso">Conversas</h3>
+                            <p class="texto-recurso">Acesse suas conversas com contatos</p>
+                        </div>
+                        <div class="mt-auto">
+                            <a href="{{ url_for('listar_contatos') }}" class="btn mt-3 btn-conversas">
+                                <i class="bi bi-chat-dots-fill"></i> Ver Conversas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-recurso text-center h-100 card-flex">
+                    <div class="card-flex-content">
+                        <div>
+                            <i class="bi bi-star-fill icone-recurso mb-3"></i>
+                            <h3 class="titulo-recurso">Nos Avalie</h3>
+                            <p class="texto-recurso">Sua opinião é importante para nós</p>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="rating mt-3">
+                                <i class="bi bi-star" data-rating="1"></i>
+                                <i class="bi bi-star" data-rating="2"></i>
+                                <i class="bi bi-star" data-rating="3"></i>
+                                <i class="bi bi-star" data-rating="4"></i>
+                                <i class="bi bi-star" data-rating="5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stars = document.querySelectorAll('.rating i');
+        let currentRating = 0;
+
+        function updateStars(rating, hover = false) {
+            stars.forEach(star => {
+                const starRating = parseInt(star.getAttribute('data-rating'));
+                if (starRating <= rating) {
+                    star.classList.remove('bi-star');
+                    star.classList.add('bi-star-fill');
+                    if (!hover) star.classList.add('active');
+                } else {
+                    star.classList.remove('bi-star-fill');
+                    star.classList.add('bi-star');
+                    if (!hover) star.classList.remove('active');
+                }
+            });
+        }
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                currentRating = parseInt(this.getAttribute('data-rating'));
+                updateStars(currentRating);
+            });
+
+            star.addEventListener('mouseover', function() {
+                const rating = parseInt(this.getAttribute('data-rating'));
+                updateStars(rating, true);
+            });
+
+            star.addEventListener('mouseout', function() {
+                updateStars(currentRating);
+            });
+        });
+    });
+</script>
+{% endblock %}

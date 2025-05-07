@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Chat - {{ contato.nome }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-recurso">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="titulo-recurso mb-0">
+                        <i class="bi bi-chat-dots-fill"></i> Chat com {{ contato.nome }}
+                    </h2>
+                    <a href="{{ url_for('listar_contatos') }}" class="btn btn-light">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
+
+                <div class="chat-container mb-4">
+                    {% for mensagem in mensagens %}
+                    <div
+                        class="mensagem {% if mensagem.remetente_id == current_user.id %}mensagem-enviada{% else %}mensagem-recebida{% endif %}">
+                        <div class="conteudo-mensagem">
+                            {{ mensagem.conteudo }}
+                        </div>
+                        <div class="data-mensagem text-right">
+                            {{ mensagem.data_envio.strftime('%d/%m/%Y %H:%M') }}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="text-center texto-recurso">
+                        Nenhuma mensagem ainda. Comece a conversa!
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <form method="POST" action="{{ url_for('enviar_mensagem', contato_id=contato.id) }}" class="mt-3">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="mensagem" placeholder="Digite sua mensagem..."
+                                required>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primario">
+                                    <i class="bi bi-send-fill"></i> Enviar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} mt-3">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Rola o chat para a última mensagem quando a página carrega
+    document.addEventListener('DOMContentLoaded', function () {
+        var chatContainer = document.querySelector('.chat-container');
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
+</script>
+{% endblock %}

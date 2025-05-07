@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Contatos{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+                <div class="card-recurso">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <a href="{{ url_for('inicio') }}" class="btn btn-light mr-2">
+                                <i class="bi bi-arrow-left"></i> Voltar
+                            </a>
+                            <h2 class="titulo-recurso mb-0 d-inline-block">
+                                <i class="bi bi-people-fill"></i> Meus Contatos
+                            </h2>
+                        </div>
+                        <a href="{{ url_for('adicionar_contato') }}" class="btn btn-primario">
+                            <i class="bi bi-person-plus-fill"></i> Novo Contato
+                        </a>
+                    </div>
+
+                    {% if contatos %}
+                        <div class="list-group">
+                            {% for contato in contatos %}
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="contato-info">
+                                        <h5 class="mb-1">{{ contato.nome }}</h5>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="{{ url_for('chat_contato', contato_id=contato.id) }}" class="btn mr-2 btn-mensagens">
+                                            <i class="bi bi-chat-dots-fill"></i> Mensagens
+                                        </a>
+                                        <a href="{{ url_for('editar_contato', contato_id=contato.id) }}" class="btn btn-light mr-2">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                        <a href="{{ url_for('excluir_contato', contato_id=contato.id) }}" 
+                                           class="btn btn-light"
+                                           onclick="return confirm('Tem certeza que deseja excluir este contato?')">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center">
+                            <p class="texto-recurso">Você ainda não tem nenhum contato cadastrado.</p>
+                            <a href="{{ url_for('adicionar_contato') }}" class="btn btn-primario">
+                                <i class="bi bi-person-plus-fill"></i> Adicionar Primeiro Contato
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} mt-3">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+{% endblock %}

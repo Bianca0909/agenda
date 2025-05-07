@@ -1,0 +1,250 @@
+:root {
+    /* Cores principais */
+    --cor-primaria: #2196F3;
+    --cor-secundaria: #1976D2;
+    --cor-terciaria: #BBDEFB;
+    --cor-destaque: #FFFFFF;
+    
+    /* Cores de ação */
+    --cor-contatos: #4CAF50;
+    --cor-conversas: #2196F3;
+    --cor-mensagens: #9C27B0;
+    
+    /* Cores de feedback */
+    --cor-sucesso: #4CAF50;
+    --cor-erro: #F44336;
+    --cor-alerta: #FFC107;
+    --cor-info: #2196F3;
+    
+    /* Cores neutras */
+    --cor-texto: #212121;
+    --cor-texto-claro: #757575;
+    --cor-fundo: #F5F5F5;
+    --cor-borda: #E0E0E0;
+    
+    /* Sombras */
+    --sombra-suave: 0 2px 4px rgba(0,0,0,0.1);
+    --sombra-media: 0 4px 6px rgba(0,0,0,0.1);
+    --sombra-forte: 0 8px 16px rgba(0,0,0,0.1);
+}
+body {
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    min-height: 100vh;
+    font-family: 'Roboto', 'Arial', sans-serif;
+}
+.navbar {
+    background-color: var(--cor-primaria) !important;
+    border-bottom: 1px solid var(--cor-terciaria);
+    box-shadow: var(--sombra-media);
+}
+.navbar-brand, .nav-link {
+    color: var(--cor-destaque) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.nav-link {
+    margin: 0 10px;
+    position: relative;
+    padding: 8px 15px;
+}
+.nav-link:hover {
+    color: var(--cor-secundaria) !important;
+    transform: translateY(-2px);
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--cor-secundaria);
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+.icone-menu {
+    margin-right: 8px;
+}
+.conteudo-principal {
+    padding: 2rem;
+    margin-top: 2rem;
+}
+.secao-boas-vindas {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+.titulo-boas-vindas {
+    color: var(--cor-primaria);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+.card-recurso {
+    background: #fff;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.card-recurso:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--cor-primaria);
+}
+.icone-recurso {
+    font-size: 2.2rem;
+    color: var(--cor-primaria);
+    margin-bottom: 1rem;
+}
+.titulo-recurso {
+    color: var(--cor-texto);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.texto-recurso {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+}
+.navbar-toggler {
+    border-color: var(--cor-destaque);
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(244, 242, 222, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.rating {
+    font-size: 24px;
+    color: #FFC107;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.rating i {
+    margin: 0 2px;
+    transition: all 0.2s ease;
+}
+.rating i:hover {
+    transform: scale(1.2);
+}
+.rating i.bi-star-fill {
+    color: #FFC107;
+}
+
+/* Botões e Links */
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn-primario {
+    background-color: var(--cor-primaria);
+    color: var(--cor-destaque);
+}
+
+.btn-contatos {
+    background-color: var(--cor-contatos);
+    color: white;
+}
+
+.btn-conversas {
+    background-color: var(--cor-conversas);
+    color: white;
+}
+
+.btn-mensagens {
+    background-color: var(--cor-mensagens);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-primario:hover {
+    background-color: var(--cor-primaria);
+    opacity: 0.9;
+    color: var(--cor-destaque);
+}
+
+.btn-contatos:hover {
+    background-color: var(--cor-contatos);
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-conversas:hover {
+    background-color: var(--cor-conversas);
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-mensagens:hover {
+    background-color: var(--cor-mensagens);
+    opacity: 0.9;
+    color: white;
+}
+
+.link-primario {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.link-primario:hover {
+    color: var(--cor-primaria);
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Cards */
+.card-flex {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-flex-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Estilos do Chat */
+.chat-container {
+    height: 400px;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+}
+.mensagem {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    max-width: 70%;
+}
+.mensagem-enviada {
+    background-color: var(--cor-primaria);
+    color: var(--cor-destaque);
+    margin-left: auto;
+}
+.mensagem-recebida {
+    background-color: #e9ecef;
+    margin-right: auto;
+}
+.data-mensagem {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
