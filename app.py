@@ -18,10 +18,8 @@ login_manager.login_message = 'Por favor, faça login para acessar esta página.
 def carregar_usuario(user_id):
     return Usuario.query.get(int(user_id))
 
-# Criar o banco de dados se não existir
 def criar_banco():
     with app.app_context():
-        # Cria as tabelas apenas se elas não existirem
         db.create_all()
 
 @app.route('/', methods=['GET'])
@@ -95,7 +93,6 @@ def editar_contato(contato_id):
 
     return render_template('cadastro_contato.html', contato=contato)
 
-# Rotas de Mensagem
 @app.route('/contatos/<int:contato_id>/chat')
 @login_required
 def chat_contato(contato_id):
@@ -124,7 +121,6 @@ def enviar_mensagem(contato_id):
 
     return redirect(url_for('chat_contato', contato_id=contato_id))
 
-# Rotas de Autenticação
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro_usuario():
     if request.method == 'POST':
@@ -133,7 +129,6 @@ def cadastro_usuario():
         senha = request.form['senha']
         confirmar_senha = request.form['confirmar_senha']
 
-        # Validar força da senha
         from utils import validar_senha
         senha_valida, erro_senha = validar_senha(senha)
         if not senha_valida:

@@ -1,28 +1,23 @@
 :root {
-    /* Cores principais */
     --cor-primaria: #2196F3;
     --cor-secundaria: #1976D2;
     --cor-terciaria: #BBDEFB;
     --cor-destaque: #FFFFFF;
     
-    /* Cores de ação */
     --cor-contatos: #4CAF50;
     --cor-conversas: #2196F3;
     --cor-mensagens: #9C27B0;
     
-    /* Cores de feedback */
     --cor-sucesso: #4CAF50;
     --cor-erro: #F44336;
     --cor-alerta: #FFC107;
     --cor-info: #2196F3;
     
-    /* Cores neutras */
     --cor-texto: #212121;
     --cor-texto-claro: #757575;
     --cor-fundo: #F5F5F5;
     --cor-borda: #E0E0E0;
     
-    /* Sombras */
     --sombra-suave: 0 2px 4px rgba(0,0,0,0.1);
     --sombra-media: 0 4px 6px rgba(0,0,0,0.1);
     --sombra-forte: 0 8px 16px rgba(0,0,0,0.1);
@@ -150,6 +145,15 @@ body {
     color: var(--cor-destaque);
 }
 
+.header-primario {
+    background-color: var(--cor-primaria);
+    color: var(--cor-destaque);
+}
+
+.texto-azul {
+    color: var(--cor-primaria) !important;
+}
+
 .btn-contatos {
     background-color: var(--cor-contatos);
     color: white;
@@ -206,7 +210,6 @@ body {
     text-decoration: underline;
 }
 
-/* Cards */
 .card-flex {
     min-height: 300px;
     display: flex;
@@ -220,7 +223,6 @@ body {
     justify-content: space-between;
 }
 
-/* Estilos do Chat */
 .chat-container {
     height: 400px;
     overflow-y: auto;
@@ -247,4 +249,13 @@ body {
     font-size: 0.75rem;
     color: #6c757d;
     margin-top: 0.25rem;
+}
+
+.card-header {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-destaque);
+    padding: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid var(--cor-borda);
 }
